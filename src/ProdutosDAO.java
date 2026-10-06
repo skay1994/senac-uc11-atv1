@@ -29,6 +29,9 @@ public class ProdutosDAO {
         
         try {
             conn = new conectaDAO().connectDB();
+            if (conn == null) {
+                return false;
+            }
             prep = conn.prepareStatement(sql);
             prep.setString(1, produto.getNome());
             prep.setInt(2, produto.getValor());
@@ -50,6 +53,9 @@ public class ProdutosDAO {
         
         try {
             conn = new conectaDAO().connectDB();
+            if (conn == null) {
+                return listagem;
+            }
             prep = conn.prepareStatement(sql);
             resultset = prep.executeQuery();
             
