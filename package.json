@@ -1,0 +1,25 @@
+{
+  "name": "senac-uc11",
+  "version": "1.0.0",
+  "description": "**Sistema de Leilões** — projeto da Unidade Curricular 11 (UC11).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skay1994/senac-uc11.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/skay1994/senac-uc11/issues"
+  },
+  "homepage": "https://github.com/skay1994/senac-uc11#readme"
+}
