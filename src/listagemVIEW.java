@@ -138,15 +138,37 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
+        if (id.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Informe o ID do produto!");
+            return;
+        }
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
+        int idNumerico;
+        try {
+            idNumerico = Integer.parseInt(id.trim());
+        } catch (NumberFormatException erro) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Informe um ID numérico válido!");
+            return;
+        }
+        
+        ProdutosDAO produtosdao = new ProdutosDAO();
+        int resultado = produtosdao.venderProduto(idNumerico);
+        
+        if (resultado > 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            id_produto_venda.setText("");
+        } else if (resultado == 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Produto não encontrado. Verifique o ID informado!");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao vender o produto!");
+        }
+        
         listarProdutos();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        vendasVIEW vendas = new vendasVIEW();
+        vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -219,6 +241,7 @@ public class listagemVIEW extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao carregar produtos: " + e.getMessage());
         }
     
     }
