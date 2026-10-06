@@ -152,11 +152,13 @@ public class listagemVIEW extends javax.swing.JFrame {
         }
         
         ProdutosDAO produtosdao = new ProdutosDAO();
-        boolean sucesso = produtosdao.venderProduto(idNumerico);
+        int resultado = produtosdao.venderProduto(idNumerico);
         
-        if (sucesso) {
+        if (resultado > 0) {
             javax.swing.JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
             id_produto_venda.setText("");
+        } else if (resultado == 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Produto não encontrado. Verifique o ID informado!");
         } else {
             javax.swing.JOptionPane.showMessageDialog(null, "Erro ao vender o produto!");
         }
@@ -239,6 +241,7 @@ public class listagemVIEW extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao carregar produtos: " + e.getMessage());
         }
     
     }
